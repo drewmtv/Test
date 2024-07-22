@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        #digital-clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 9em; /* 3x the original 3em */
+            margin-bottom: 40px; /* Scaled up to maintain proportional spacing */
+        }
+        #digital {
+            color: white;
+            margin-right: 20px; /* Scaled up to maintain proportional spacing */
+        }
+        #clock {
+            color: #fee207;
+        }
+        .clock {
+            color: #fff;
+            font-size: 15em; /* 3x the original 5em */
+            display: flex;
+            align-items: center;
+            border: 30px solid transparent; /* 3x the original 10px */
+            border-radius: 45px; /* 3x the original 15px */
+            padding: 60px; /* 3x the original 20px */
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.5); /* 3x the original 20px */
+            animation: glow 5s linear infinite;
+        }
+        .clock span {
+            margin: 0 15px; /* 3x the original 5px */
+        }
+        .clock #hrs {
+            color: lightgreen;
+        }
+        .clock #min {
+            color: lightblue;
+        }
+        .clock #sec {
+            color: yellow;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 60px rgba(255, 0, 0, 0.5); } /* 3x the original 20px */
+            25% { box-shadow: 0 0 60px rgba(255, 255, 0, 0.5); } /* 3x the original 20px */
+            50% { box-shadow: 0 0 60px rgba(0, 255, 0, 0.5); } /* 3x the original 20px */
+            75% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.5); } /* 3x the original 20px */
+        }
+    </style>
+</head>
+<body>
+    <div id="digital-clock">
+        <div id="digital">Digital</div>
+        <div id="clock">Clock</div>
+    </div>
+    <div class="clock">
+        <span id="hrs">00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+    </div>
+    <script>
+        const hrs = document.getElementById('hrs');
+        const min = document.getElementById('min');
+        const sec = document.getElementById('sec');
+
+        function updateTime() {
+            const currentTime = new Date();
+            hrs.textContent = String(currentTime.getHours()).padStart(2, '0');
+            min.textContent = String(currentTime.getMinutes()).padStart(2, '0');
+            sec.textContent = String(currentTime.getSeconds()).padStart(2, '0');
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to set the time immediately
+    </script>
+</body>
+</html>
